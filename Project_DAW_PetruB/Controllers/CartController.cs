@@ -30,7 +30,7 @@ namespace Project_DAW_PetruB.Controllers
         }
 
         [HttpGet]
-        [Authorize(Policy = "BasicUser")]
+        //[Authorize(Policy = "BasicUser")]
         public async Task<IActionResult> GetCarts()
         {
             var carts = cartManager.GetCarts();

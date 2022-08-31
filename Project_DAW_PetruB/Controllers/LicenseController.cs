@@ -29,7 +29,7 @@ namespace Project_DAW_PetruB.Controllers
         }
 
         [HttpGet]
-        [Authorize(Policy = "BasicUser")]
+        //[Authorize(Policy = "BasicUser")]
         public async Task<IActionResult> GetLicenses()
         {
             var licenses = licenseManager.GetLicenses();
