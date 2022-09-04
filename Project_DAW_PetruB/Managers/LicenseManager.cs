@@ -1,4 +1,5 @@
-﻿using Project_DAW_PetruB.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Project_DAW_PetruB.Entities;
 using Project_DAW_PetruB.Models;
 using Project_DAW_PetruB.Repositories;
 using System;
@@ -28,6 +29,21 @@ namespace Project_DAW_PetruB.Managers
                 .GetLicenses()
                 .FirstOrDefault(x => x.Id == id);
             await licenseRepository.Delete(license);
+        }
+
+        public LicenseModel GetById(string id)
+        {
+            var license = licenseRepository
+                            .GetLicenses()
+                            .Include(x => x.Producer)
+                            .FirstOrDefault(x => x.Id == id);
+            LicenseModel lm = new LicenseModel();
+            lm.Id = license.Id;
+            lm.Key = license.Key;
+            lm.Name = license.Name;
+            lm.ProducerId = license.ProducerId;
+            lm.Producer = license.Producer.Name;
+            return lm;
         }
 
         public List<License> GetLicenses()

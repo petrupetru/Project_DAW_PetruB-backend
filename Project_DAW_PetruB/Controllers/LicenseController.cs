@@ -24,7 +24,7 @@ namespace Project_DAW_PetruB.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById([FromRoute] string id)
         {
-            var license = licenseManager.GetLicenses().FirstOrDefault(x => x.Id == id);
+            var license = licenseManager.GetById(id);
             return Ok(license);
         }
 

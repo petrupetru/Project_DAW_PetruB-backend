@@ -11,5 +11,6 @@ namespace Project_DAW_PetruB.Models
         public string Name { get; set; }
         public string Key { get; set; }
         public string ProducerId { get; set; }
+        public string Producer { get; set; }
     }
 }

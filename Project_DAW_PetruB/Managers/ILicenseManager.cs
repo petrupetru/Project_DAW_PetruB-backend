@@ -10,6 +10,7 @@ namespace Project_DAW_PetruB.Managers
     public interface ILicenseManager
     {
         List<License> GetLicenses();
+        LicenseModel GetById(string id);
         Task Create(License license);
         Task Update(LicenseModel license);
         Task Delete(string id);

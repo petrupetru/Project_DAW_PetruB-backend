@@ -27,7 +27,7 @@ namespace Project_DAW_PetruB.Managers
             var user = new User
             {
                 Email = registerModel.Email,
-                UserName = registerModel.Email
+                UserName = registerModel.Email,
             };
 
             var result = await userManager.CreateAsync(user, registerModel.Password);
