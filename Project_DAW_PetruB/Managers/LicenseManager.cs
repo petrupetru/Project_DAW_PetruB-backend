@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Project_DAW_PetruB.Entities;
 using Project_DAW_PetruB.Models;
 using Project_DAW_PetruB.Repositories;
@@ -37,12 +38,22 @@ namespace Project_DAW_PetruB.Managers
                             .GetLicenses()
                             .Include(x => x.Producer)
                             .FirstOrDefault(x => x.Id == id);
-            LicenseModel lm = new LicenseModel();
+            /*LicenseModel lm = new LicenseModel();
             lm.Id = license.Id;
             lm.Key = license.Key;
             lm.Name = license.Name;
             lm.ProducerId = license.ProducerId;
-            lm.Producer = license.Producer.Name;
+            lm.Producer = license.Producer.Name;*/
+
+
+            var config = new MapperConfiguration(cfg =>
+            cfg.CreateMap<License, LicenseModel>()
+            .ForMember(dest => dest.Producer, act => act.MapFrom(src => src.Producer.Name)));
+            var mapper = new Mapper(config);
+            var lm = mapper.Map<LicenseModel>(license);
+
+
+
             return lm;
         }
 
