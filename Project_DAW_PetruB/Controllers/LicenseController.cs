@@ -60,7 +60,7 @@ namespace Project_DAW_PetruB.Controllers
             return Ok();
         }
 
-        [HttpDelete("delete-{id}")]
+        [HttpDelete("delete{id}")]
         public async Task<IActionResult> Delete([FromRoute] string id)
         {
             await licenseManager.Delete(id);

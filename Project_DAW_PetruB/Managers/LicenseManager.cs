@@ -57,6 +57,8 @@ namespace Project_DAW_PetruB.Managers
                 .GetLicenses()
                 .FirstOrDefault(x => x.Id == licenseModel.Id);
             license.Name = licenseModel.Name;
+            license.Key = licenseModel.Key;
+            license.ProducerId = licenseModel.ProducerId;
 
             await licenseRepository.Update(license);
         }

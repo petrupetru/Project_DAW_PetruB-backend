@@ -24,7 +24,7 @@ namespace Project_DAW_PetruB.Controllers
         }
 
         [HttpGet]
-        //[Authorize(Policy = "BasicUser")]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> GetProducers()
         {
             var producers = producerManager.GetProducers();
@@ -32,6 +32,7 @@ namespace Project_DAW_PetruB.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> GetById([FromRoute] string id)
         {
             var producer = producerManager.GetProducers().FirstOrDefault(x => x.Id == id);
@@ -40,6 +41,7 @@ namespace Project_DAW_PetruB.Controllers
 
 
         [HttpPost("create")]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> Create([FromBody] ProducerModel producerModel)
         {
             var newProducer = new Producer
@@ -53,6 +55,7 @@ namespace Project_DAW_PetruB.Controllers
         }
 
         [HttpPut("update")]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> Update([FromBody] ProducerModel producerModel)
         {
             await producerManager.Update(producerModel);
@@ -61,6 +64,7 @@ namespace Project_DAW_PetruB.Controllers
         }
 
         [HttpDelete("delete{id}")]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> Delete(string id)
         {
             await producerManager.Delete(id);

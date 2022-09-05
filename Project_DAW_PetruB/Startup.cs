@@ -96,6 +96,7 @@ namespace Project_DAW_PetruB
                 });
             services.AddAuthorization(options =>
             {
+                options.AddPolicy("Admin", policy => policy.RequireRole("Admin").RequireAuthenticatedUser().AddAuthenticationSchemes("AuthScheme").Build());
                 options.AddPolicy("BasicUser", policy => policy.RequireRole("BasicUser").RequireAuthenticatedUser().AddAuthenticationSchemes("AuthScheme").Build());
             });
 
