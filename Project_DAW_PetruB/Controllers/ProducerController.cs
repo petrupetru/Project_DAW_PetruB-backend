@@ -71,5 +71,12 @@ namespace Project_DAW_PetruB.Controllers
             return Ok();
         }
 
+        [HttpGet("count{id}")]
+        public async Task<IActionResult> CountLicenses([FromRoute] string id)
+        {
+            var count =  producerManager.CountLicenses(id);
+            return Ok(count);
+        }
+
     }
 }

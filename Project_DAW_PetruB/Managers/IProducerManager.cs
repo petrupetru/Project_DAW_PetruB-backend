@@ -13,5 +13,6 @@ namespace Project_DAW_PetruB.Managers
         Task Create(Producer producer);
         Task Update(ProducerModel producer);
         Task Delete(string id);
+        int CountLicenses(string id);
     }
 }

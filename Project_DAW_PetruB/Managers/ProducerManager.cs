@@ -11,8 +11,10 @@ namespace Project_DAW_PetruB.Managers
     public class ProducerManager : IProducerManager
     {
         private readonly IProducerRepository producerRepository;
-        public ProducerManager(IProducerRepository producerRepository)
+        private readonly ILicenseRepository licenseRepository;
+        public ProducerManager(IProducerRepository producerRepository, ILicenseRepository licenseRepository)
         {
+            this.licenseRepository = licenseRepository;
             this.producerRepository = producerRepository;
         }
 
@@ -42,6 +44,28 @@ namespace Project_DAW_PetruB.Managers
             producer.Name = producerModel.Name;
 
             await producerRepository.Update(producer);
+        }
+
+        public int CountLicenses(string id)
+        {
+            var prods = producerRepository.GetProducers();
+            var licenses = licenseRepository.GetLicenses();
+
+            var res = from producer in prods
+                        join license in licenses
+                        on producer.Id equals license.ProducerId
+                        where producer.Id == id
+                        group license by license.ProducerId into grp
+                        select new { producerId = grp.Key, cnt = grp.Count() };
+            if (res.Any())
+            {
+                return res.FirstOrDefault().cnt;
+            }
+            else
+            {
+                return 0;
+            }
+            
         }
     }
 }
