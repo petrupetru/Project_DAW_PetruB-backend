@@ -72,5 +72,10 @@ namespace Project_DAW_PetruB.Managers
         {
             await cartRepository.CreateLicenseCart(licenseCart);
         }
+
+        public async Task DeleteLicenseCart(LicenseCart licenseCart)
+        {
+            await cartRepository.DeleteLicenseCart(licenseCart);
+        }
     }
 }

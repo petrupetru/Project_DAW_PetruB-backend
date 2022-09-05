@@ -86,5 +86,17 @@ namespace Project_DAW_PetruB.Controllers
             return Ok();
         }
 
+        [HttpDelete("removefromcart{licenseid}/{cartid}")]
+        public async Task<IActionResult> DeleteLC([FromRoute] string licenseid, [FromRoute] string cartid)
+        {
+            var newLC = new LicenseCart
+            {
+                LicenseId = licenseid,
+                CartId = cartid
+            };
+            await cartManager.DeleteLicenseCart(newLC);
+            return Ok();
+        }
+
     }
 }

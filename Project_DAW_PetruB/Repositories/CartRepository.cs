@@ -44,5 +44,11 @@ namespace Project_DAW_PetruB.Repositories
             db.LicenseCarts.AddAsync(licenseCart);
             await db.SaveChangesAsync();
         }
+
+        public async Task DeleteLicenseCart(LicenseCart licenseCart)
+        {
+            db.LicenseCarts.Remove(licenseCart);
+            await db.SaveChangesAsync();
+        }
     }
 }

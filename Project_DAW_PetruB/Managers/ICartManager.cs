@@ -15,5 +15,6 @@ namespace Project_DAW_PetruB.Managers
         Task Delete(string id);
         List<LicenseModel> GetLicensesListed(string id);
         Task CreateLicenseCart(LicenseCart licenseCart);
+        Task DeleteLicenseCart(LicenseCart licenseCart);
     }
 }
