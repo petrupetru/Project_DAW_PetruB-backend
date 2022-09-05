@@ -12,5 +12,6 @@ namespace Project_DAW_PetruB.Repositories
         Task Create(Cart cart);
         Task Update(Cart cart);
         Task Delete(Cart cart);
+        Task CreateLicenseCart(LicenseCart licenseCart);
     }
 }

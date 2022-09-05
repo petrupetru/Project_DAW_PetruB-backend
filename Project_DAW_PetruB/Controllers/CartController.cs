@@ -37,6 +37,14 @@ namespace Project_DAW_PetruB.Controllers
             return Ok(carts);
         }
 
+        [HttpGet("Licenses{id}")]
+        //[Authorize(Policy = "BasicUser")]
+        public async Task<IActionResult> GetLicensesListed([FromRoute] string id)
+        {
+            var carts = cartManager.GetLicensesListed(id);
+            return Ok(carts);
+        }
+
 
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody] CartModel cartModel)
@@ -59,10 +67,22 @@ namespace Project_DAW_PetruB.Controllers
             return Ok();
         }
 
-        [HttpDelete("delete-{id}")]
+        [HttpDelete("delete{id}")]
         public async Task<IActionResult> Delete([FromRoute] string id)
         {
             await cartManager.Delete(id);
+            return Ok();
+        }
+
+        [HttpPost("addtocart{licenseid}/{cartid}")]
+        public async Task<IActionResult> CreateLC([FromRoute] string licenseid, [FromRoute] string cartid)
+        {
+            var newLC = new LicenseCart
+            {
+                LicenseId = licenseid,
+                CartId = cartid
+            };
+            await cartManager.CreateLicenseCart(newLC);
             return Ok();
         }
 

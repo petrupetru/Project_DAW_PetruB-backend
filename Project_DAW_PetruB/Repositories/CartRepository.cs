@@ -38,5 +38,11 @@ namespace Project_DAW_PetruB.Repositories
             db.Carts.Update(cart);
             await db.SaveChangesAsync();
         }
+
+        public async Task CreateLicenseCart(LicenseCart licenseCart)
+        {
+            db.LicenseCarts.AddAsync(licenseCart);
+            await db.SaveChangesAsync();
+        }
     }
 }

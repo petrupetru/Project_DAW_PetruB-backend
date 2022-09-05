@@ -31,6 +31,7 @@ namespace Project_DAW_PetruB.Managers
             {
                 claims.Add(new Claim(ClaimTypes.Role, role));
             }
+            claims.Add(new Claim("UserId", user.Id));
 
 
             var secretKey = configuration.GetSection("Jwt").GetSection("SecretKey").Get<string>();
